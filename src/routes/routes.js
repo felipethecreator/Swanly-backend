@@ -16,13 +16,13 @@ function searchRoutes(app) {
     });
 
     app.post('/register', (req, res) => {
-        const { nome, idade, genero } = req.body; // captura os dados JSON enviados pelo postman
+        const { email, username, password } = req.body; // captura os dados JSON enviados pelo postman
 
-        if (!nome || !idade || !genero) {
+        if (!email || !username || !password) {
             return res.status(400).json({ message: 'Dados incompletos.'})
         }
 
-        const usuario = new User(nome, idade, genero);
+        const usuario = new User(email, username, password);
 
         res.status(200).json({
             message: 'Usuario registrado com sucesso',
