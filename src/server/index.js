@@ -11,5 +11,5 @@ app.get('/', (req, res) => {
 const PORT = process.env.SERVER_PORT;
 
 app.listen(PORT, () => {
-    console.log("Servidor aberto na porta 3000")
+    console.log(`Servidor aberto na porta ${PORT}`)
 })
