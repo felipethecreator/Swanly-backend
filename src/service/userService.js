@@ -1,12 +1,12 @@
 const User = require('../model/User.js')
 
-function createUser(UserEntity) {
-    User.create(UserEntity)
-    .then(() => {
+async function createUser(UserEntity) {
+    try {
+        await User.create(UserEntity)
         console.log("Usuário criado com sucesso!")
-    }).catch(error => {
+    } catch (error) {
         console.log(`Não foi possível criar o usuário, ${error}`)
-    })
+    }
 }
 
 // TODO: I need to make this guy do a response, not a console.log
