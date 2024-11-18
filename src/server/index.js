@@ -9,7 +9,7 @@ app.use(express.json());
 
 dotenv.config()
 
-sequelize.sync()
+sequelize.sync( { alter: true } )
 .then(() => {
     console.log("conectei essa merda")
 }).catch(error => {

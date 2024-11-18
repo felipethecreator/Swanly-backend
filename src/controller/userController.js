@@ -14,6 +14,13 @@ const userRoutes = [{
         console.log(req.body)
         userService.createUser(req.body)
     }
+},
+{
+    path: '/user/get',
+    method: 'get',
+    callback: (req, res) => {
+        userService.getUser()
+    }
 }
 ]
 
