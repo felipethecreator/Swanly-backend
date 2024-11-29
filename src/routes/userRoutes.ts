@@ -1,9 +1,9 @@
 import express from "express";
 import userController from "../controller/userController";
-import { validateUser } from "../middleware/userValidation";
+import { validateUsername } from "../middleware/userValidation";
 
 const router = express.Router();
 
-router.post("/register", validateUser, userController.handleCreateUser);
+router.post("/register", validateUsername, userController.handleCreateUser);
 
 export default router;
