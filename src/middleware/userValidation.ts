@@ -34,6 +34,13 @@ function validateUsername(req: Request, res: Response, next:NextFunction) {
             "message": "Seu username deve ter no máximo 30 letras!"
         })
         return
+    } if (userData.username.includes(" ")) {
+        res.status(400).json({
+            "success": false,
+            "error": "Bad Request",
+            "message": "Seu username não pode conter espaços!"
+        })
+        return
     }
     next();   
 }
