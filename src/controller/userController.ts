@@ -7,9 +7,9 @@ async function handleCreateUser(req: Request, res: Response): Promise<void> {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             res.status(400).json({
-                success: false,
-                message: "Erro de validação",
-                errors: errors.array(),
+                "success": false,
+                "message": "Erro de validação",
+                "errors": errors.array(),
             });
             return
         }
@@ -17,18 +17,18 @@ async function handleCreateUser(req: Request, res: Response): Promise<void> {
         const userData = req.body;
         await createUser(userData);
         res.status(201).json({
-            success: true,
-            message: "Usuário criado com sucesso.",
-            data: {
+            "success": true,
+            "message": "Usuário criado com sucesso.",
+            "data": {
                 username: userData.username,
                 email: userData.email,
             },
         });
     } catch (error) {
         res.status(500).json({
-            success: false,
-            message: "Erro interno no servidor",
-            error: error,
+            "success": false,
+            "message": "Erro interno no servidor",
+            "errors": error,
         });
     }
 }
