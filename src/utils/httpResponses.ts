@@ -1,19 +1,35 @@
-const httpResponses = {
-    success: {
-        true: true,
-        false: false
-    },
-    error: {
-        badRequest: "Bad Request",
-    },
-    message: {
-        emptyField: "Preencha o campo 'username'.",
-        miniumLetters: "Seu username deve ter no mínimo 6 letras!",
-        maximumLetters: "Seu username deve ter no máximo 30 letras!",
-        fieldWithSpace: "Seu username não pode conter espaços!"
-    }
-}
+type ErrorResponse = {
+    success: boolean;
+    error: string;
+    message: string;
+};
 
-function httpHelper() {
-    
-}
+const errorHandler = new Map<string, ErrorResponse>([
+        ["emptyField", {            
+            success: false,
+            error: "Bad Request",
+            message: "Preencha todos os campos!"
+        }],
+        [
+         "miniumLetters", {
+            success: false,
+            error: "Bad Request",
+            message: "Seu username deve ter no mínimo 6 letras!"
+         }],
+        [
+         "maximumLetters", {
+            success: false,
+            error: "Bad Request",
+            message: "Seu username deve ter no máximo 30 letras!"
+         }
+        ],
+        [
+         "fieldWithSpace", {            
+            success: false,
+            error: "Bad Request",
+            message: "Seu username não pode conter espaços!"
+         }
+        ]
+    ])
+
+export default errorHandler 
