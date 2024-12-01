@@ -20,7 +20,7 @@ const errorHandler = new Map<string, ErrorResponse>([
          "maximumLetters", {
             success: false,
             error: "Bad Request",
-            message: "Seu username deve ter no máximo 30 letras!"
+            message: "Seu username deve ter no máximo 20 letras!"
          }
         ],
         [
@@ -30,6 +30,6 @@ const errorHandler = new Map<string, ErrorResponse>([
             message: "Seu username não pode conter espaços!"
          }
         ]
-    ])
+    ]);
 
-export default errorHandler 
+export default errorHandler
