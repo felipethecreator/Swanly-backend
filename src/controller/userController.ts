@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUser } from "../service/userService";
+import { createUser, getUser } from "../service/userService";
 import { validationResult } from "express-validator";
 
 async function handleCreateUser(req: Request, res: Response): Promise<void> {
@@ -8,8 +8,8 @@ async function handleCreateUser(req: Request, res: Response): Promise<void> {
         if (!errors.isEmpty()) {
             res.status(400).json({
                 "success": false,
-                "message": "Erro de validação",
-                "errors": errors.array(),
+                "error": "Erro de validação",
+                "message": errors.array(),
             });
             return
         }
@@ -27,10 +27,27 @@ async function handleCreateUser(req: Request, res: Response): Promise<void> {
     } catch (error) {
         res.status(500).json({
             "success": false,
-            "message": "Erro interno no servidor",
-            "errors": error,
+            "error": "Erro interno no servidor",
+            "message": error,
         });
     }
 }
 
-export default { handleCreateUser };
+async function handleGetUser(req: Request, res: Response): Promise<void> {
+    try {
+        const userId = req.params.id;
+        const user = await getUser(userId);
+        if (!user) {
+            res.status(404).json({ message: "Usuário não encontrado." });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({
+            "success": false,
+            "error": "Internal error",
+            "message": `Ocorreu um erro ao buscar usuário: ${error}`
+        })
+    }
+}
+
+export { handleCreateUser, handleGetUser };

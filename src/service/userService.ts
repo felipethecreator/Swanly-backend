@@ -14,19 +14,18 @@ async function createUser(user: User) {
     }
 }
 
-// TODO: MELHORAR ISSO, E MUITO
-async function getUser(req: Request, res: Response): Promise<void> {
+async function getUser(userId: string): Promise<User | null> {
     try {
-        const userId = req.params.id;
         const user = await userModel.findById(userId);
-        console.log(`Usuário encontrado!`);
-        res.status(200).json(user)
+        console.log(`Usuário ${user?.username} encontrado com sucesso!`)
+        return user;
     } catch (error) {
-        console.log(`Ocorreu um erro ao buscar o usuário: ${error}`);
+        console.error(`Erro ao buscar usuário no banco de dados: ${error}`);
+        throw error;
     }
 }
 
-// TODO: MELHORAR ISSO, E MUITO
+// TODO: MELHORAR ISSO, E MUITO, transferir para o controller e manter bd aqui
 async function deleteUser(req: Request, res: Response): Promise<void> {
     try {
         const userId = req.params.id;
