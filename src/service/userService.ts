@@ -1,11 +1,6 @@
 import userModel from "../model/user"
 import bycrypt, { hash } from 'bcrypt';
-
-interface User {
-    username:  string,
-    email:     string,
-    password:  string
-}
+import { User } from "../types/User";
 
 export async function createUser(user: User) {
     try {

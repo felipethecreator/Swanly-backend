@@ -1,8 +1,4 @@
-type ErrorResponse = {
-    success: boolean;
-    error: string;
-    message: string;
-};
+import { ErrorResponse } from "../types/ErrorResponse";
 
 const errorHandler = new Map<string, ErrorResponse>([
         ["emptyField", {            
