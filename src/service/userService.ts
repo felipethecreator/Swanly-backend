@@ -26,4 +26,15 @@ async function getUser(req: Request, res: Response): Promise<void> {
     }
 }
 
-export { createUser, getUser }
+// TODO: MELHORAR ISSO, E MUITO
+async function deleteUser(req: Request, res: Response): Promise<void> {
+    try {
+        const userId = req.params.id;
+        const user = await userModel.findByIdAndDelete(userId)
+        console.log(`Usuário ${user?.username} removido com sucesso.`)
+    } catch (error) {
+        console.log(`Ocorreu um erro ao remover o usuário: ${error}`);
+    }
+}
+
+export { createUser, getUser, deleteUser }
