@@ -26,13 +26,14 @@ async function getUser(userId: string): Promise<User | null> {
 }
 
 // TODO: MELHORAR ISSO, E MUITO, transferir para o controller e manter bd aqui
-async function deleteUser(req: Request, res: Response): Promise<void> {
+async function deleteUser(userId: string): Promise<void> {
     try {
-        const userId = req.params.id;
         const user = await userModel.findByIdAndDelete(userId)
         console.log(`Usuário ${user?.username} removido com sucesso.`)
+        return;
     } catch (error) {
         console.log(`Ocorreu um erro ao remover o usuário: ${error}`);
+        throw error;
     }
 }
 

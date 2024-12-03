@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUser, getUser } from "../service/userService";
+import { createUser, deleteUser, getUser } from "../service/userService";
 import { validationResult } from "express-validator";
 
 async function handleCreateUser(req: Request, res: Response): Promise<void> {
@@ -50,4 +50,18 @@ async function handleGetUser(req: Request, res: Response): Promise<void> {
     }
 }
 
-export { handleCreateUser, handleGetUser };
+async function handleDeleteUser(req:Request, res: Response): Promise<void> {
+    try {
+        const userId = req.params.id;
+        await deleteUser(userId);
+        res.status(202).send("Usuário deletado com sucesso!");
+    } catch (error) {
+        res.status(500).json({
+            "success": false,
+            "error": "Internal error",
+            "message": `Ocorreu um erro ao remover usuário: ${error}`
+        })
+    }
+}
+
+export { handleCreateUser, handleGetUser, handleDeleteUser };

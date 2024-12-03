@@ -1,5 +1,5 @@
 import express from "express";
-import { handleCreateUser, handleGetUser } from "../controller/userController";
+import { handleCreateUser, handleDeleteUser, handleGetUser } from "../controller/userController";
 import { validateUsername } from "../middleware/userValidation";
 import { deleteUser } from "../service/userService";
 
@@ -9,6 +9,6 @@ router.post("/register", validateUsername, handleCreateUser);
 
 router.get("/:id", handleGetUser)
 
-router.delete("/:id", deleteUser)
+router.delete("/:id", handleDeleteUser)
 
 export default router;
