@@ -25,6 +25,13 @@ const errorHandler = new Map<string, ErrorResponse>([
          error: "Bad Request",
          message: "Seu username não pode conter espaços!"
       }
+   ],
+   [
+      "invalidEmail", {
+         success: false,
+         error: "Bad Request",
+         message: "Insira um email válido!"
+      }
    ]
 ]);
 

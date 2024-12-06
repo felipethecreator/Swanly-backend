@@ -3,7 +3,8 @@ import errorHandler from "../utils/httpResponses";
 
 function validateUsername(req: Request, res: Response, next:NextFunction) {
     const userData = req.body;
-
+    const regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/);
+    //TODO: TESTAR COM ESSE EMAIL: email@-example.com
     const rules = [
         {
             condition: () => !userData.username || !userData.email || !userData.password,
@@ -20,6 +21,10 @@ function validateUsername(req: Request, res: Response, next:NextFunction) {
         {
             condition: () => userData.username.includes(" "),
             messageKey: "fieldWithSpace"
+        }, 
+        {
+            condition: () => !regexp.test(userData.email),
+            messageKey: "invalidEmail"
         }
     ];
 
